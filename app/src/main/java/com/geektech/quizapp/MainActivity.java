@@ -52,30 +52,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        pager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-                if (menuItem != null) {
-                    menuItem.setChecked(false);
-                } else {
-                    navigationView.getMenu().getItem(0).setChecked(false);
-                }
-                Log.d("page", "onPageSelected: " + position);
-                navigationView.getMenu().getItem(position).setChecked(true);
-                menuItem = navigationView.getMenu().getItem(position);
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
-        });
-
     }
-
 }
+
