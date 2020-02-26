@@ -1,4 +1,4 @@
-package com.geektech.quizapp;
+package com.geektech.quizapp.main.viewpager;
 
 import android.os.Bundle;
 

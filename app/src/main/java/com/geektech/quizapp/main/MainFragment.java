@@ -1,4 +1,4 @@
-package com.geektech.quizapp;
+package com.geektech.quizapp.main;
 
 import androidx.lifecycle.ViewModelProviders;
 
@@ -11,6 +11,8 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.geektech.quizapp.R;
 
 public class MainFragment extends Fragment {
 

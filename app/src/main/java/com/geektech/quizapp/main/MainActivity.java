@@ -1,7 +1,6 @@
-package com.geektech.quizapp;
+package com.geektech.quizapp.main;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
@@ -9,6 +8,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.viewpager.widget.ViewPager;
 
+import com.geektech.quizapp.main.viewpager.PagerAdapter;
+import com.geektech.quizapp.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
@@ -27,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
                 .of(this)
                 .get(MainViewModel.class);
         initView();
-}
+    }
 
     private void initView() {
         pager = findViewById(R.id.viewPager);
@@ -51,7 +52,20 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
+        pager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener(){
 
+            @Override
+            public void onPageSelected(int position) {
+                if (menuItem != null) {
+                    menuItem.setChecked(false);
+                } else {
+                    navigationView.getMenu().getItem(0).setChecked(false);
+                }
+
+                navigationView.getMenu().getItem(position).setChecked(true);
+                menuItem= navigationView.getMenu().getItem(position);
+            }
+        });
     }
 }
 

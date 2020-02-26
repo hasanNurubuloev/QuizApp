@@ -1,4 +1,4 @@
-package com.geektech.quizapp;
+package com.geektech.quizapp.main;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -11,14 +11,14 @@ public class MainViewModel extends ViewModel {
     public MutableLiveData<ArrayList> operation = new MutableLiveData<>();
     public MutableLiveData<Integer> counter = new MutableLiveData<>();
 
-    void onIncrementClick() {
+    public void onIncrementClick() {
         mCounter++;
         oper.add("+");
         counter.setValue(mCounter);
         operation.setValue(oper);
     }
 
-    void onDecrementClick() {
+    public void onDecrementClick() {
         mCounter--;
         oper.add("-");
         counter.setValue(mCounter);
