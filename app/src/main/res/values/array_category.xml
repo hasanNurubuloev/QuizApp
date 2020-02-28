@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="category">
+        <item>All</item>
+        <item>Movies and Serials</item>
+        <item>Famous</item>
+        <item>Animals</item>
+        <item>Music</item>
+        <item>Football</item>
+        <item>Food</item>
+    </string-array>
+</resources>

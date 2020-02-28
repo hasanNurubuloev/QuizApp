@@ -5,12 +5,17 @@ import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.viewpager.widget.ViewPager;
 
-import com.geektech.quizapp.main.viewpager.PagerAdapter;
 import com.geektech.quizapp.R;
+import com.geektech.quizapp.history.HistoryFragment;
+import com.geektech.quizapp.main.viewpager.PagerAdapter;
+import com.geektech.quizapp.settings.SettingsFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import java.util.Vector;
 
 public class MainActivity extends AppCompatActivity {
     private MainViewModel mViewModel;
@@ -18,6 +23,10 @@ public class MainActivity extends AppCompatActivity {
     private PagerAdapter adapter;
     private MenuItem menuItem;
     private BottomNavigationView navigationView;
+//    private Vector <Fragment> fragments;
+    private MainFragment mainFragment;
+    private HistoryFragment historyFragment;
+    private SettingsFragment settingsFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +41,14 @@ public class MainActivity extends AppCompatActivity {
 
     private void initView() {
         pager = findViewById(R.id.viewPager);
-        adapter = new PagerAdapter(getSupportFragmentManager());
+        adapter = new PagerAdapter(super.getSupportFragmentManager());
+        mainFragment = new MainFragment();
+        historyFragment = new HistoryFragment();
+        settingsFragment = new SettingsFragment();
+        adapter.addFragments(mainFragment);
+        adapter.addFragments(historyFragment);
+        adapter.addFragments(settingsFragment);
+
         pager.setAdapter(adapter);
         navigationView = findViewById(R.id.bottom_nav);
         navigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -49,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
                         pager.setCurrentItem(2);
                         break;
                 }
-                return true;
+                return false;
             }
         });
         pager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener(){
