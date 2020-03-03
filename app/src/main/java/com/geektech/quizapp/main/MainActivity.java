@@ -58,15 +58,12 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.bn_1:
-                        tvTitle.setText(R.string.quiz);
                         pager.setCurrentItem(0);
                         break;
                     case R.id.bn_2:
-                        tvTitle.setText(R.string.history);
                         pager.setCurrentItem(1);
                         break;
                     case R.id.bn_3:
-                        tvTitle.setText(R.string.settings);
                         pager.setCurrentItem(2);
                         break;
                 }
@@ -85,6 +82,14 @@ public class MainActivity extends AppCompatActivity {
 
                 navigationView.getMenu().getItem(position).setChecked(true);
                 menuItem= navigationView.getMenu().getItem(position);
+                if (position == 0){
+                    tvTitle.setText(R.string.quiz);
+
+                }else if (position ==1){
+                    tvTitle.setText(R.string.history);
+                }else {
+                    tvTitle.setText(R.string.settings);
+                }
             }
         });
     }
