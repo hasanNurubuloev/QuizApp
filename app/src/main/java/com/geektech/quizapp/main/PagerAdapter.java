@@ -1,4 +1,4 @@
-package com.geektech.quizapp.main.viewpager;
+package com.geektech.quizapp.main;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;

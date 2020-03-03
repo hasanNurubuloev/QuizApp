@@ -2,20 +2,18 @@ package com.geektech.quizapp.main;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.WindowManager;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.viewpager.widget.ViewPager;
 
 import com.geektech.quizapp.R;
 import com.geektech.quizapp.history.HistoryFragment;
-import com.geektech.quizapp.main.viewpager.PagerAdapter;
 import com.geektech.quizapp.settings.SettingsFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-import java.util.Vector;
 
 public class MainActivity extends AppCompatActivity {
     private MainViewModel mViewModel;
@@ -27,11 +25,14 @@ public class MainActivity extends AppCompatActivity {
     private MainFragment mainFragment;
     private HistoryFragment historyFragment;
     private SettingsFragment settingsFragment;
+    private TextView tvTitle;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         mViewModel = ViewModelProviders
                 .of(this)
@@ -41,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void initView() {
         pager = findViewById(R.id.viewPager);
+        tvTitle = findViewById(R.id.tv_title);
         adapter = new PagerAdapter(super.getSupportFragmentManager());
         mainFragment = new MainFragment();
         historyFragment = new HistoryFragment();
@@ -56,12 +58,15 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.bn_1:
+                        tvTitle.setText(R.string.quiz);
                         pager.setCurrentItem(0);
                         break;
                     case R.id.bn_2:
+                        tvTitle.setText(R.string.history);
                         pager.setCurrentItem(1);
                         break;
                     case R.id.bn_3:
+                        tvTitle.setText(R.string.settings);
                         pager.setCurrentItem(2);
                         break;
                 }
