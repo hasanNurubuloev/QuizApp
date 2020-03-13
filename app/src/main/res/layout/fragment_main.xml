@@ -34,7 +34,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:text="@string/_5"
-        android:textSize="20sp"
+        android:textColor="@android:color/black"
+        android:textSize="22sp"
         app:layout_constraintStart_toEndOf="@+id/mf_tv_question_amount"
         app:layout_constraintTop_toTopOf="@+id/mf_tv_question_amount" />
 
@@ -42,7 +43,6 @@
         android:id="@+id/mf_seek_bar"
         android:layout_width="280dp"
         android:layout_height="40dp"
-        android:layout_marginStart="30dp"
         android:max="50"
         android:min="5"
         app:layout_constraintEnd_toEndOf="parent"
@@ -61,12 +61,28 @@
 
     <Spinner
         android:id="@+id/mf_spinner_category"
+        style="@style/Widget.AppCompat.ListView.DropDown"
         android:layout_width="280dp"
         android:layout_height="60dp"
-        style="@style/Widget.AppCompat.ListView.DropDown"
-        app:layout_constraintStart_toStartOf="@+id/mf_tv_category"
-        app:layout_constraintTop_toBottomOf="@+id/mf_tv_category" />
+        android:entries="@array/category"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginEnd="30dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mf_tv_category"
+         />
 
+<!--    <org.angmarch.views.NiceSpinner-->
+<!--        android:id="@+id/mf_spinner_category"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:layout_constraintLeft_toLeftOf="parent"-->
+<!--        app:layout_constraintRight_toRightOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/mf_tv_category"-->
+<!--        android:layout_marginLeft="@dimen/page_big_margin"-->
+<!--        android:layout_marginRight="@dimen/page_big_margin"-->
+<!--        app:entries="@array/category"-->
+<!--        app:popupTextAlignment="start"-->
+<!--        android:layout_marginTop="8dp"/>-->
     <TextView
         android:id="@+id/mf_tv_difficulty"
         android:layout_width="wrap_content"
@@ -82,6 +98,7 @@
         style="@style/Widget.AppCompat.ListView.DropDown"
         android:layout_width="280dp"
         android:layout_height="60dp"
+        android:entries="@array/difficulty"
         app:layout_constraintStart_toStartOf="@+id/mf_tv_category"
         app:layout_constraintTop_toBottomOf="@+id/mf_tv_difficulty" />
 
@@ -94,6 +111,7 @@
         android:background="@drawable/bg_button"
         android:text="@string/start"
         android:textColor="@color/cardview_light_background"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mf_spinner_difficulty" />

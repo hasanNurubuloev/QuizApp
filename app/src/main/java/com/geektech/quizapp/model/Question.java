@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 import java.util.List;
 
-public class Question implements Serializable {
+public class Question {
     private String category;
 
     private String type;

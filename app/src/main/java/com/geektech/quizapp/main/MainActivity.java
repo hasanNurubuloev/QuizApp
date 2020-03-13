@@ -1,5 +1,7 @@
 package com.geektech.quizapp.main;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.WindowManager;
@@ -7,7 +9,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProviders;
 import androidx.viewpager.widget.ViewPager;
 
 import com.geektech.quizapp.R;
@@ -16,12 +17,11 @@ import com.geektech.quizapp.settings.SettingsFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
-    private MainViewModel mViewModel;
     private ViewPager pager;
     private PagerAdapter adapter;
     private MenuItem menuItem;
     private BottomNavigationView navigationView;
-//    private Vector <Fragment> fragments;
+    //    private Vector <Fragment> fragments;
     private MainFragment mainFragment;
     private HistoryFragment historyFragment;
     private SettingsFragment settingsFragment;
@@ -34,9 +34,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        mViewModel = ViewModelProviders
-                .of(this)
-                .get(MainViewModel.class);
+
         initView();
     }
 
@@ -70,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
-        pager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener(){
+        pager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
 
             @Override
             public void onPageSelected(int position) {
@@ -81,17 +79,24 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 navigationView.getMenu().getItem(position).setChecked(true);
-                menuItem= navigationView.getMenu().getItem(position);
-                if (position == 0){
+                menuItem = navigationView.getMenu().getItem(position);
+                if (position == 0) {
                     tvTitle.setText(R.string.quiz);
 
-                }else if (position ==1){
+                } else if (position == 1) {
                     tvTitle.setText(R.string.history);
-                }else {
+                } else {
                     tvTitle.setText(R.string.settings);
                 }
             }
         });
+
+    }
+
+    public static void start(Context context) {
+        Intent starter = new Intent(context, MainActivity.class);
+
+        context.startActivity(starter);
     }
 }
 

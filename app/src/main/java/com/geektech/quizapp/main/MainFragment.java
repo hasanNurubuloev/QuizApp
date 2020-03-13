@@ -4,9 +4,7 @@ import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -17,25 +15,24 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProviders;
 
 import com.geektech.quizapp.R;
-import com.geektech.quizapp.model.Question;
+import com.geektech.quizapp.core.CoreFragment;
 import com.geektech.quizapp.quiz.QuizActivity;
 import com.geektech.quizapp.utils.SimpleOnItemSelectedListener;
 import com.geektech.quizapp.utils.SimpleOnSeekBarChangeListener;
 
-public class MainFragment extends Fragment {
+import java.util.ArrayList;
 
-    private MainViewModel mViewModel;
+public class MainFragment extends CoreFragment {
+
     private TextView tvValueSeekBar;
     private SeekBar seekBar;
     private Spinner spCategory;
     private Spinner spDifficulty;
     private Button btnStart;
     public String difficult;
-    public String category;
+    public Integer category;
     public int valueSeekBar;
 
     public static MainFragment newInstance() {
@@ -43,9 +40,14 @@ public class MainFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_main, container, false);
+    protected int getViewLayout() {
+        return R.layout.fragment_main;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
 
         seekBar = view.findViewById(R.id.mf_seek_bar);
         int color = ContextCompat.getColor(getContext(), R.color.colorPurple);
@@ -63,7 +65,7 @@ public class MainFragment extends Fragment {
                 tvValueSeekBar.setText(String.valueOf(progress));
                 //TODO valueSeekBar null
                 valueSeekBar = progress;
-                Log.d("ololo", "onProgressChanged: "+ valueSeekBar);
+                Log.d("ololo", "onProgressChanged: " + valueSeekBar);
             }
         });
 
@@ -90,27 +92,23 @@ public class MainFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 super.onItemSelected(parent, view, position, id);
-                category = (String) parent.getSelectedItem();
+                category = parent.getSelectedItemPosition()+8;
             }
         });
 
         view.findViewById(R.id.btn_start).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getContext() , QuizActivity.class));
-                Log.d("ololo", "onClick: " );
+              QuizActivity.start(getActivity(), difficult,category,valueSeekBar);
             }
         });
-        return view;
 
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = ViewModelProviders
-                .of(getActivity())
-                .get(MainViewModel.class);
+
     }
 
 }

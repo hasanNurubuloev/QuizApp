@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="difficulty">
-        <item>Any Category</item>
-        <item>Easy</item>
-        <item>Medium</item>
-        <item>Hard</item>
+        <item>Any difficulty</item>
+        <item>easy</item>
+        <item>medium</item>
+        <item>hard</item>
     </string-array>
 
 </resources>

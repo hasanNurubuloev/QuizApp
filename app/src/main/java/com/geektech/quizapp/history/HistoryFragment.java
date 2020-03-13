@@ -11,19 +11,14 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.geektech.quizapp.R;
+import com.geektech.quizapp.core.CoreFragment;
 
-public class HistoryFragment extends Fragment {
+public class HistoryFragment extends CoreFragment {
 
     private HistoryViewModel mViewModel;
 
     public static HistoryFragment newInstance() {
         return new HistoryFragment();
-    }
-
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_history, container, false);
     }
 
     @Override
@@ -33,4 +28,8 @@ public class HistoryFragment extends Fragment {
         // TODO: Use the ViewModel
     }
 
+    @Override
+    protected int getViewLayout() {
+        return R.layout.fragment_history;
+    }
 }
