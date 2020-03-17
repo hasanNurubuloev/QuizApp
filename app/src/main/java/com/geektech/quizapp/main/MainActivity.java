@@ -40,7 +40,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void initView() {
         pager = findViewById(R.id.viewPager);
-        tvTitle = findViewById(R.id.tv_title);
+        tvTitle = findViewById(R.id.tv_title)
+        ;
         adapter = new PagerAdapter(super.getSupportFragmentManager());
         mainFragment = new MainFragment();
         historyFragment = new HistoryFragment();

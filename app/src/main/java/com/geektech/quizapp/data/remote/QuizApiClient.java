@@ -3,6 +3,9 @@ package com.geektech.quizapp.data.remote;
 import android.util.Log;
 
 import com.geektech.quizapp.main.MainFragment;
+import com.geektech.quizapp.model.GlobalResponse;
+import com.geektech.quizapp.model.QuizQuestionCount;
+import com.geektech.quizapp.model.TriviaCategories;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -23,8 +26,8 @@ public class QuizApiClient implements IQuizApiClient {
     private QuizApi client = retrofit.create(QuizApi.class);
 
     @Override
-    public void getQuestions(int amount, Integer category, String difficulty,final QuestionsCallback callback) {
-        mainFragment.valueSeekBar= amount;
+    public void getQuestions(int amount, Integer category, String difficulty, final QuestionsCallback callback) {
+        mainFragment.valueSeekBar = amount;
         Call<QuestionsResponse> call = client.getQuestions(amount, category, difficulty);
 //        Call<QuestionsResponse> call = client.getQuestions(mainFragment.valueSeekBar, mainFragment.category, mainFragment.difficult);
         Log.d("ololo", "getQuestions: " + amount);
@@ -51,6 +54,54 @@ public class QuizApiClient implements IQuizApiClient {
         });
     }
 
+    @Override
+    public void getGlobal(GlobalCallback globalCallback) {
+        Call<GlobalResponse> call = client.getGlobal();
+        call.enqueue(new Callback<GlobalResponse>() {
+            @Override
+            public void onResponse(Call<GlobalResponse> call, Response<GlobalResponse> response) {
+                globalCallback.onSuccess(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<GlobalResponse> call, Throwable t) {
+                globalCallback.onFailure(t);
+            }
+        });
+    }
+
+    @Override
+    public void getQuestionResponse(Integer category, QuestionResponseCallback questionResponseCallback) {
+        Call<QuizQuestionCount> call = client.getQuestionCount(category);
+        call.enqueue(new Callback<QuizQuestionCount>() {
+            @Override
+            public void onResponse(Call<QuizQuestionCount> call, Response<QuizQuestionCount> response) {
+                questionResponseCallback.onSuccess(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<QuizQuestionCount> call, Throwable t) {
+                questionResponseCallback.onFailure(t);
+            }
+        });
+    }
+
+    @Override
+    public void getTriviaCategoryCallback(TriviaCategoryCallback triviaCategoryCallback) {
+        Call<TriviaCategories> call = client.getTriviaCategories();
+        call.enqueue(new Callback<TriviaCategories>() {
+            @Override
+            public void onResponse(Call<TriviaCategories> call, Response<TriviaCategories> response) {
+                triviaCategoryCallback.onSuccess(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<TriviaCategories> call, Throwable t) {
+                triviaCategoryCallback.onFailure(t);
+            }
+        });
+    }
+
     private interface QuizApi {
         @GET("/api.php")
         Call<QuestionsResponse> getQuestions(
@@ -58,5 +109,16 @@ public class QuizApiClient implements IQuizApiClient {
                 @Query("category") Integer category,
                 @Query("difficulty") String difficulty
         );
+
+        @GET("api_category.php")
+        Call<TriviaCategories> getTriviaCategories();
+
+        @GET("api_count_global.php")
+        Call<GlobalResponse> getGlobal();
+
+        @GET("api_count.php?category")
+        Call<QuizQuestionCount> getQuestionCount(
+                @Query("category") Integer category);
+
     }
 }
