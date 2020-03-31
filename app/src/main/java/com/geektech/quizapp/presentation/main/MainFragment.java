@@ -1,6 +1,5 @@
-package com.geektech.quizapp.main;
+package com.geektech.quizapp.presentation.main;
 
-import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,11 +17,9 @@ import androidx.core.content.ContextCompat;
 
 import com.geektech.quizapp.R;
 import com.geektech.quizapp.core.CoreFragment;
-import com.geektech.quizapp.quiz.QuizActivity;
+import com.geektech.quizapp.presentation.quiz.QuizActivity;
 import com.geektech.quizapp.utils.SimpleOnItemSelectedListener;
 import com.geektech.quizapp.utils.SimpleOnSeekBarChangeListener;
-
-import java.util.ArrayList;
 
 public class MainFragment extends CoreFragment {
 

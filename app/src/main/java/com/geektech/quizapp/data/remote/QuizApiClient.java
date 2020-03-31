@@ -2,7 +2,6 @@ package com.geektech.quizapp.data.remote;
 
 import android.util.Log;
 
-import com.geektech.quizapp.main.MainFragment;
 import com.geektech.quizapp.model.GlobalResponse;
 import com.geektech.quizapp.model.QuizQuestionCount;
 import com.geektech.quizapp.model.TriviaCategories;
@@ -16,7 +15,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Query;
 
 public class QuizApiClient implements IQuizApiClient {
-    MainFragment mainFragment = MainFragment.newInstance();
+
 
     private Retrofit retrofit = new Retrofit.Builder()
             .baseUrl("https://opentdb.com/")
@@ -27,7 +26,6 @@ public class QuizApiClient implements IQuizApiClient {
 
     @Override
     public void getQuestions(int amount, Integer category, String difficulty, final QuestionsCallback callback) {
-        mainFragment.valueSeekBar = amount;
         Call<QuestionsResponse> call = client.getQuestions(amount, category, difficulty);
 //        Call<QuestionsResponse> call = client.getQuestions(mainFragment.valueSeekBar, mainFragment.category, mainFragment.difficult);
         Log.d("ololo", "getQuestions: " + amount);

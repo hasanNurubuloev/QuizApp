@@ -3,29 +3,37 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+android:layout_margin="16dp"
     android:orientation="vertical">
-
-
+<androidx.cardview.widget.CardView
+    android:id="@+id/card_view"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="wrap_content"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintStart_toStartOf="parent">
     <TextView
         android:id="@+id/hh_tv_category"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/category_mixed"
+        android:text="@string/category"
         android:textColor="@android:color/black"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        android:textSize="25sp"
+        android:textStyle="bold"/>
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="340dp"
+android:src="@drawable/ic_more_horiz"
+        />
 
     <TextView
         android:id="@+id/hh_tv_correct_answers"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="50dp"
         android:text="@string/correct_answers"
-        android:textSize="20sp"
-        app:layout_constraintTop_toBottomOf="@+id/hh_tv_category"
-        app:layout_constraintStart_toStartOf="parent"/>
+        android:textSize="20sp"/>
 
 
 
@@ -33,21 +41,18 @@
             android:id="@+id/hh_tv_difficulty"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="80dp"
             android:text="@string/difficulty_easy"
             android:textSize="20sp"
-            app:layout_constraintTop_toBottomOf="@+id/hh_tv_correct_answers"
-            app:layout_constraintStart_toStartOf="parent"
             />
 
         <TextView
             android:id="@+id/hh_tv_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="150dp"
-            android:text="@string/_12_may_2019_20_32"
-            app:layout_constraintTop_toTopOf="@id/hh_tv_difficulty"
-            app:layout_constraintStart_toEndOf="@+id/hh_tv_difficulty" />
-
+            android:layout_marginStart="250dp"
+            android:layout_marginTop="80dp"
+ />
+</androidx.cardview.widget.CardView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 

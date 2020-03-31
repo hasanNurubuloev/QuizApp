@@ -1,4 +1,4 @@
-package com.geektech.quizapp.main;
+package com.geektech.quizapp.presentation.main;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;

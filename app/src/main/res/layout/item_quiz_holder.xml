@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
-        android:textSize="40sp"
+        android:textSize="20sp"
         android:padding="16dp"
         app:layout_constraintBottom_toTopOf="@+id/linear_multiply"
         app:layout_constraintEnd_toEndOf="parent"
@@ -30,27 +30,19 @@
 
         <Button
             android:id="@+id/btn_first_mp"
-            android:layout_width="350dp"
-            android:layout_height="wrap_content"
-            android:textSize="30sp" />
+            style="@style/ButtonQuiz" />
 
         <Button
             android:id="@+id/btn_second_mp"
-            android:layout_width="350dp"
-            android:layout_height="wrap_content"
-            android:textSize="30sp" />
+            style="@style/ButtonQuiz"/>
 
         <Button
             android:id="@+id/btn_third_mp"
-            android:layout_width="350dp"
-            android:layout_height="wrap_content"
-            android:textSize="30sp" />
+            style="@style/ButtonQuiz"/>
 
         <Button
             android:id="@+id/btn_fourth_mp"
-            android:layout_width="350dp"
-            android:layout_height="wrap_content"
-            android:textSize="30sp" />
+            style="@style/ButtonQuiz" />
     </LinearLayout>
 
     <LinearLayout
@@ -66,15 +58,11 @@
 
         <Button
             android:id="@+id/btn_first_tf"
-            android:layout_width="350dp"
-            android:layout_height="wrap_content"
-            android:textSize="30sp" />
+            style="@style/ButtonQuiz" />
 
         <Button
             android:id="@+id/btn_second_tf"
-            android:layout_width="350dp"
-            android:layout_height="wrap_content"
-            android:textSize="30sp" />
+            style="@style/ButtonQuiz"/>
     </LinearLayout>
 
 

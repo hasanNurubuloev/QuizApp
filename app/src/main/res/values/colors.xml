@@ -4,4 +4,10 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
     <color name="colorPurple">#CB04ED</color>
+    <color name="blue">#6979F8</color>
+    <color name="white">#FFFF</color>
+    <color name="correct_answer">#4CE2A7</color>
+    <color name="selected_answer">#6979F8</color>
+
+
 </resources>

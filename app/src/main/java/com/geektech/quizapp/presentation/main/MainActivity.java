@@ -1,4 +1,4 @@
-package com.geektech.quizapp.main;
+package com.geektech.quizapp.presentation.main;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,8 +12,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import com.geektech.quizapp.R;
-import com.geektech.quizapp.history.HistoryFragment;
-import com.geektech.quizapp.settings.SettingsFragment;
+import com.geektech.quizapp.presentation.history.HistoryFragment;
+import com.geektech.quizapp.presentation.settings.SettingsFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {

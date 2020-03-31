@@ -1,4 +1,4 @@
-package com.geektech.quizapp.history;
+package com.geektech.quizapp.presentation.history;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -7,13 +7,19 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.geektech.quizapp.R;
 import com.geektech.quizapp.core.CoreFragment;
-import com.geektech.quizapp.history.recycler.HistoryAdapter;
+import com.geektech.quizapp.model.History;
+import com.geektech.quizapp.model.QuizResult;
+import com.geektech.quizapp.presentation.history.recycler.HistoryAdapter;
+
+import java.util.List;
 
 public class HistoryFragment extends CoreFragment {
 
@@ -30,6 +36,14 @@ public class HistoryFragment extends CoreFragment {
         super.onActivityCreated(savedInstanceState);
         mViewModel = ViewModelProviders.of(this).get(HistoryViewModel.class);
         // TODO: Use the ViewModel
+
+        mViewModel.history.observe((LifecycleOwner) getContext(), new Observer<List<History>>() {
+            @Override
+            public void onChanged(List<History> quizResults) {
+                adapter.update(quizResults);
+            }
+        });
+
     }
 
     @Override
@@ -54,4 +68,9 @@ public class HistoryFragment extends CoreFragment {
     protected int getViewLayout() {
         return R.layout.fragment_history;
     }
+
+
+
+
 }
+
