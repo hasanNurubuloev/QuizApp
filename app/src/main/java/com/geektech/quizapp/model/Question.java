@@ -1,5 +1,7 @@
 package com.geektech.quizapp.model;
 
+import android.util.Log;
+
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
@@ -37,6 +39,7 @@ public class Question {
     }
 
     public List<String> getAnswers() {
+        Log.d("olololo", "getAnswers: " + answers.size());
         return answers;
     }
 

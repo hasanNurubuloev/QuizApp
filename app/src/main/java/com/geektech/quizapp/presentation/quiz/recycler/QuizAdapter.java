@@ -20,9 +20,10 @@ import com.geektech.quizapp.model.Question;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.geektech.quizapp.model.EType.MULTIPLE;
+
 public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.QuizViewHolder> {
     private List<Question> list;
-    private int amount;
     private IClickAnswer clickAnswer;
 
 
@@ -48,9 +49,7 @@ public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.QuizViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull QuizViewHolder holder, int position) {
-        for (int i = 0; i < list.size(); i++) {
             holder.onBind(list.get(position), position);
-        }
     }
 
     @Override
@@ -121,23 +120,24 @@ public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.QuizViewHolder
             } else {
                 setButtonsEnabled(true);
             }
-            this.position = position;
             tvQuestions.setText(Html.fromHtml(question.getQuestion()));
-            if (question.getType().equals (EType.BOOLEAN)) {
+            if (question.getType() == "boolean") {
+                linearLayoutMultiple.setVisibility(View.GONE);
+                linearLayoutTrueFalse.setVisibility(View.VISIBLE);
+
+                btnFirstTf.setText(Html.fromHtml(question.getAnswers().get(0)));
+                btnSecondTf.setText(Html.fromHtml(question.getAnswers().get(1)));
+            } else {
                 linearLayoutMultiple.setVisibility(View.VISIBLE);
                 linearLayoutTrueFalse.setVisibility(View.GONE);
                 btnFirstMp.setText(Html.fromHtml(question.getIncorrectAnswers().get(0)));
                 btnSecondMp.setText(Html.fromHtml(question.getIncorrectAnswers().get(1)));
                 btnThirdMp.setText(Html.fromHtml(question.getIncorrectAnswers().get(2)));
                 btnFourthMp.setText(Html.fromHtml(question.getCorrectAnswer()));
-            } else {
-                linearLayoutMultiple.setVisibility(View.GONE);
-                linearLayoutTrueFalse.setVisibility(View.VISIBLE);
-                btnFirstTf.setText(Html.fromHtml(question.getCorrectAnswer()));
-                btnSecondTf.setText(Html.fromHtml(question.getIncorrectAnswers().get(0)));
-                Log.d("ololo", "onBind: " + question.getQuestion());
+                Log.d("ololololo", "onBind: " + question.getAnswers().size());
+                Log.d("ololololo", "onBind: " + question.getAnswers().get(2));
             }
-            btn_state(question);
+            buttonsBg(question);
         }
 
         @SuppressLint("ResourceAsColor")
@@ -148,6 +148,7 @@ public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.QuizViewHolder
             btnFourthMp.setBackgroundResource(R.drawable.bg_button_answers);
             btnFirstTf.setBackgroundResource(R.drawable.bg_button_answers);
             btnSecondTf.setBackgroundResource(R.drawable.bg_button_answers);
+
             btnFirstMp.setTextColor(itemView.getResources().getColor(R.color.blue));
             btnSecondMp.setTextColor(itemView.getResources().getColor(R.color.blue));
             btnThirdMp.setTextColor(itemView.getResources().getColor(R.color.blue));
@@ -157,7 +158,7 @@ public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.QuizViewHolder
         }
 
         @SuppressLint("ResourceAsColor")
-        public void btn_state(Question question) {
+        public void buttonsBg(Question question) {
             if (question.getSelectedAnswersPosition() != null) {
                 switch (question.getSelectedAnswersPosition()) {
                     case 0:

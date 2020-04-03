@@ -44,6 +44,7 @@ public class QuizViewModel extends ViewModel {
             public void onSuccess(List<Question> questions) {
                 isLoading.setValue(false);
                 questionList.addAll(questions);
+                Log.d("olololo", "onSuccess: "+ questionList.size());
                 retrofitData.setValue(questions);
                 currentQuestionPosition.setValue(0);
             }
@@ -96,8 +97,9 @@ public class QuizViewModel extends ViewModel {
 
     private int getCorrectAnswersAmount() {
         int correctAnswersAmount = 0;
-        for (int i = 0; i < questionList.size() - 1; i++) {
+        for (int i = 0; i < questionList.size()-1 ; i++) {
             if (questionList.get(i).getSelectedAnswersPosition() != null) {
+                Log.d("olololo", "getCorrectAnswersAmount: " + questionList.size());
                 String correctAnswer = questionList.get(i).getCorrectAnswer();
                 String selectedAnswer = questionList.get(i).getAnswers()
                         .get(questionList.get(i).getSelectedAnswersPosition());
